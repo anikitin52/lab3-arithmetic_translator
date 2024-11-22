@@ -1,6 +1,10 @@
-template <class T, template<class> class Tcont>
+#ifndef STACK_H
+#define STACK_H 
+
+#include <vector>
+template <class T, class Tcont = std::vector<T>>
 class Stack {
-    Tcont<T> data;
+    Tcont data;
 public:
     void push(const T& val) {
         data.push_back(val);
@@ -12,10 +16,9 @@ public:
         }
     }
 
-    T& pop() {
-        T ret = data.back();
-        data.pop_back();
-        return ret;
+    T top() {
+        T res = data.back();
+        return res;
     }
 
     bool empty() {
@@ -26,3 +29,5 @@ public:
         return data.size();
     }
 };
+
+#endif STACK_H
