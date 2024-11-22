@@ -11,12 +11,17 @@ public:
     }
 
     void pop() {
-        if (!empty()) {
-            data.pop_back();
+        if (empty()) {
+            throw "Stack is empty!";
         }
+        data.pop_back();
+        
     }
 
     T top() {
+        if (empty()) {
+            throw "Stack is empty!";
+        }
         T res = data.back();
         return res;
     }
