@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/s23380323/lab3-arithmetic_translator/gtest
+# Install script for directory: C:/Users/sts11/lab3-arithmetic_translator/gtest
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

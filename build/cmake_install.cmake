@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/s23380323/lab3-arithmetic_translator
+# Install script for directory: C:/Users/sts11/lab3-arithmetic_translator
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,20 +34,28 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/s23380323/lab3-arithmetic_translator/build/src/cmake_install.cmake")
-  include("C:/Users/s23380323/lab3-arithmetic_translator/build/samples/cmake_install.cmake")
-  include("C:/Users/s23380323/lab3-arithmetic_translator/build/gtest/cmake_install.cmake")
-  include("C:/Users/s23380323/lab3-arithmetic_translator/build/test/cmake_install.cmake")
+  include("C:/Users/sts11/lab3-arithmetic_translator/build/src/cmake_install.cmake")
+  include("C:/Users/sts11/lab3-arithmetic_translator/build/samples/cmake_install.cmake")
+  include("C:/Users/sts11/lab3-arithmetic_translator/build/gtest/cmake_install.cmake")
+  include("C:/Users/sts11/lab3-arithmetic_translator/build/test/cmake_install.cmake")
 
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
-  set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
+  if(CMAKE_INSTALL_COMPONENT MATCHES "^[a-zA-Z0-9_.+-]+$")
+    set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INSTALL_COMPONENT}.txt")
+  else()
+    string(MD5 CMAKE_INST_COMP_HASH "${CMAKE_INSTALL_COMPONENT}")
+    set(CMAKE_INSTALL_MANIFEST "install_manifest_${CMAKE_INST_COMP_HASH}.txt")
+    unset(CMAKE_INST_COMP_HASH)
+  endif()
 else()
   set(CMAKE_INSTALL_MANIFEST "install_manifest.txt")
 endif()
 
-string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/s23380323/lab3-arithmetic_translator/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "C:/Users/sts11/lab3-arithmetic_translator/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
+endif()
