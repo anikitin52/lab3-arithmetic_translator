@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
 #include <map>
 #include "stack.h"
 
@@ -11,12 +12,16 @@ class Expression {
 	string infix;
 	string postfix;
 	vector<char> lexems;
+	vector<string> operands;
 	map<char, int> priority;
 
-	void Parse();
+	
+	
 	void ToPosfix();
 public:
 	Expression(string inf);
+
+	void Parse();
 
 	string GetInfix() const {
 		return infix;
