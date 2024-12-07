@@ -13,7 +13,7 @@ int main() {
 	Expression expr(input);
 	
 	expr.Parse();
-	
+	cout << "\n" << expr.LexicalCheck();
 
 	
 
