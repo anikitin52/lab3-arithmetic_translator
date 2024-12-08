@@ -10,15 +10,17 @@ using namespace std;
 
 class Expression {
 	string infix;
-	string postfix;
+	vector<string> postfix;
 	vector<string> expr;
 	vector<char> lexems;
 	vector<string> operands;
+	map<string, int> priority;
 	
-	void ToPosfix();
+	
 public:
 	Expression(string inf) {
 		infix = inf;
+		priority = { {"+", 1}, {"-", 1}, {"*", 2}, {"/", 2}};
 	}
 
 	void Parse() {
@@ -41,7 +43,7 @@ public:
 			operands.push_back(number);
 			expr.push_back(number);
 		}	
-
+		/*
 		for (string number : operands) {
 			cout << number << " ";
 		}
@@ -54,7 +56,7 @@ public:
 			cout << ex << "_";
 		}
 		cout << "\n";
-
+		*/
 
 	}
 
@@ -183,10 +185,50 @@ public:
 		return true;
 	}
 
+	void ToPosfix() {
+		Stack<string> st;
+		vector<string> operators = { "+", "-", "*", "/" };
+
+		for (string lexem : expr) {
+			if (std::find(operands.begin(), operands.end(), lexem) != operands.end()) {
+				postfix.push_back(lexem);
+			}
+			else if (lexem == "(") {
+				st.push(lexem);
+			}
+			else if (lexem == ")") {
+				while (st.top() != "(") {
+					string top_elem = st.top();
+					st.pop();
+					postfix.push_back(top_elem);
+				}
+				st.pop();
+			}
+			else if (std::find(operators.begin(), operators.end(), lexem) != operators.end()) {
+				while (!st.empty() && priority[lexem] <= priority[st.top()]) {
+					string top_elem = st.top();
+					st.pop();
+					postfix.push_back(top_elem);
+				}
+				st.push(lexem);
+			}
+		}
+		while (!st.empty()) {
+			string top_elem = st.top();
+			st.pop();
+			postfix.push_back(top_elem);
+		}
+
+		for (string x : postfix) {
+			cout << x << " ";
+		}
+	}
+
+
 	string GetInfix() const{
 		return infix;
 	}
-	string GetPosfix() const {
+	vector<string> GetPosfix() const {
 		return postfix;
 	}
 

@@ -14,7 +14,11 @@ int main() {
 	
 	expr.Parse();
 
-	cout << expr.SyntaxCheck();
+	cout << expr.SyntaxCheck() << "\n";
+
+	expr.ToPosfix();
+
+	
 	
 
 	
