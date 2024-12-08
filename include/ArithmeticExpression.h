@@ -43,21 +43,6 @@ public:
 			operands.push_back(number);
 			expr.push_back(number);
 		}	
-		/*
-		for (string number : operands) {
-			cout << number << " ";
-		}
-		cout << "\n";
-		for (char lex : lexems) {
-			cout << lex;
-		}
-		cout << "\n";
-		for (string ex : expr) {
-			cout << ex << "_";
-		}
-		cout << "\n";
-		*/
-
 	}
 
 	bool LexicalCheck() {
@@ -218,10 +203,6 @@ public:
 			st.pop();
 			postfix.push_back(top_elem);
 		}
-
-		for (string x : postfix) {
-			cout << x << " ";
-		}
 	}
 
 
@@ -233,5 +214,56 @@ public:
 	}
 
 	vector<char> GetOperands() const;
-	double Calculate(const map<char, double>& values);
+	double Calculate() {
+		Parse();
+		if (!LexicalCheck()) {
+			cout << "Лексическая ошибка!\n";
+			return 0;
+		}
+		if (!SyntaxCheck()) {
+			cout << "Синтаксическая ошибка!\n";
+			return 0;
+		}
+		ToPosfix();
+
+		vector<string> operators = { "+", "-", "*", "/" };
+
+		double res;
+		Stack<double> st;
+		for (string lexem : postfix) {
+			if (std::find(operands.begin(), operands.end(), lexem) != operands.end()) {
+				st.push(stod(lexem));
+			}
+			if (std::find(operators.begin(), operators.end(), lexem) != operators.end()) {
+				double top_element, second_element;
+				top_element = st.top();
+				st.pop();
+				second_element = st.top();
+				st.pop();
+
+				int current_res;
+
+				if (lexem == "+") {
+					current_res = top_element + second_element;
+				}
+				if (lexem == "-") {
+					current_res = top_element - second_element;
+				}
+				if (lexem == "*") {
+					current_res = top_element * second_element;
+				}
+				if (lexem == "/") {
+					if (second_element == 0) {
+						cout << "Ошибка! Деление на 0!";
+						return 0.0;
+					}
+					current_res = top_element / second_element;
+				}
+
+				st.push(current_res);
+			}
+		}
+		res = st.top();
+		return res;
+	}
 };
