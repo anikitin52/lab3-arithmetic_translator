@@ -1,5 +1,4 @@
 #include "ArithmeticExpression.h"
-#include "ArithmeticExpression.h"
 
 
 void Expression::ToPosfix()
