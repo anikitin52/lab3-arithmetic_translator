@@ -1,6 +1,0 @@
-C:/Users/sts11/lab3-arithmetic_translator/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/sts11/lab3-arithmetic_translator/build/CMakeFiles/ZERO_CHECK.dir
-C:/Users/sts11/lab3-arithmetic_translator/build/src/CMakeFiles/translator.dir
-C:/Users/sts11/lab3-arithmetic_translator/build/samples/CMakeFiles/sample.dir
-C:/Users/sts11/lab3-arithmetic_translator/build/gtest/CMakeFiles/gtest.dir
-C:/Users/sts11/lab3-arithmetic_translator/build/test/CMakeFiles/test_translator.dir
