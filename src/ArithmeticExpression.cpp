@@ -222,7 +222,7 @@ double Expression::Calculate()
 			second_element = st.top();
 			st.pop();
 
-			int current_res;
+			int current_res{};
 
 			if (lexem == "+") {
 				current_res = top_element + second_element;
