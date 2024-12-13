@@ -32,8 +32,10 @@ public:
 				number.push_back(c);
 			}
 			else {
-				operands.push_back(number);
-				expr.push_back(number);
+				if (number != "") {
+					operands.push_back(number);
+					expr.push_back(number);
+				}
 				number = "";
 				lexems.push_back(c);
 				expr.push_back(std::string(1, c));
@@ -214,6 +216,7 @@ public:
 	}
 
 	vector<char> GetOperands() const;
+
 	double Calculate() {
 		Parse();
 		if (!LexicalCheck()) {
