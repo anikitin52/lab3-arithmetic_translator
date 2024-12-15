@@ -16,10 +16,6 @@ int main() {
 	while (input != "exit") {
 		Expression expr(input);
 		cout << "\nРезультат: " << expr.Calculate() << "\n\n";
-		vector<string> pst = expr.GetPosfix();
-		for (string s : pst) {
-			cout << s;
-		}
 		cout << "\n\nВведите арифметическое выражение: ";
 		getline(cin, input);
 	}

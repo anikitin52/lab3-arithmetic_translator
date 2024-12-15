@@ -209,41 +209,35 @@ double Expression::Calculate()
 
 	vector<string> operators = { "+", "-", "*", "/" };
 
-	double res;
 	Stack<double> st;
 	for (string lexem : postfix) {
 		if (std::find(operands.begin(), operands.end(), lexem) != operands.end()) {
 			st.push(stod(lexem));
 		}
-		if (std::find(operators.begin(), operators.end(), lexem) != operators.end()) {
-			double top_element, second_element;
-			top_element = st.top();
-			st.pop();
-			second_element = st.top();
-			st.pop();
+		else if (std::find(operators.begin(), operators.end(), lexem) != operators.end()) {
 
-			int current_res{};
+			double operand1 = st.top();
+			st.pop();
+			double operand2 = st.top();
+			st.pop();
 
 			if (lexem == "+") {
-				current_res = top_element + second_element;
+				st.push(operand1 + operand2);
 			}
-			if (lexem == "-") {
-				current_res = top_element - second_element;
+			else if (lexem == "-") {
+				st.push(operand1 - operand2);
 			}
-			if (lexem == "*") {
-				current_res = top_element * second_element;
+			else if (lexem == "*") {
+				st.push(operand1 * operand2);
 			}
-			if (lexem == "/") {
-				if (second_element == 0) {
+			else if (lexem == "/") {
+				if (operand2 == 0) {
 					cout << "Ошибка! Деление на 0!";
 					return 0.0;
 				}
-				current_res = top_element / second_element;
+				st.push(operand1 / operand2);
 			}
-
-			st.push(current_res);
 		}
 	}
-	res = st.top();
-	return res;
+	return st.top();
 }
