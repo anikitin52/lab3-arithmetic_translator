@@ -216,9 +216,9 @@ double Expression::Calculate()
 		}
 		else if (std::find(operators.begin(), operators.end(), lexem) != operators.end()) {
 
-			double operand1 = st.top();
-			st.pop();
 			double operand2 = st.top();
+			st.pop();
+			double operand1 = st.top();
 			st.pop();
 
 			if (lexem == "+") {
