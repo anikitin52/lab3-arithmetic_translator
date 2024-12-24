@@ -8,13 +8,15 @@
 
 using namespace std;
 
+// Класс для представления арифметического выражения
 class Expression {
-	string infix;
-	vector<string> postfix;
-	vector<string> expr;
-	vector<char> lexems;
-	vector<string> operands;
-	map<string, int> priority;
+private:
+	string infix;           // Входное инфиксное выражение
+	vector<string> postfix; // Постфиксное представление выражения
+	vector<string> expr;    // Общий список элементов выражения (лексем)
+	vector<char> lexems;    // Список отдельных символов выражения
+	vector<string> operands;// Список операндов (чисел)
+	map<string, int> priority; // Словарь приоритетов операторов
 	
 	
 public:
